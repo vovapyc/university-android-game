@@ -8,6 +8,8 @@
 class HelloWorld : public cocos2d::Layer {
 public:
     static cocos2d::Scene* createScene();
+    void GoToGameOverScene(Ref *pSender);
+    void GoToPauseScene(Ref *pSender);
 
 
 

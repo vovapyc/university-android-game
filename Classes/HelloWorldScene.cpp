@@ -1,6 +1,7 @@
 
 #include "HelloWorldScene.h"
 #include <cstdio>
+#include "GameOver.h"
 
 using namespace std;
 
@@ -18,6 +19,17 @@ Scene *HelloWorld::createScene() {
     scene->addChild(layer);
     // return the scene
     return scene;
+}
+
+void HelloWorld::GoToPauseScene(cocos2d::Ref *pSender)
+{
+//    auto scene = PauseScene::createScene();
+//    Director::getInstance()->pushScene(scene);
+}
+void HelloWorld::GoToGameOverScene(cocos2d::Ref *pSender)
+{
+    auto scene = GameOver::createScene();
+    Director::getInstance()->replaceScene(scene);
 }
 
 bool HelloWorld::init() {

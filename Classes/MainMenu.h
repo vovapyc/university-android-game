@@ -1,5 +1,5 @@
-#ifndef __MAINMENU_SCENE_H__
-#define __MAINMENU_SCENE_H__
+#ifndef __MAINMENU_H__
+#define __MAINMENU_H__
 
 #include "cocos2d.h"
 
@@ -14,4 +14,4 @@ public:
     void GoToGameScene(Ref *pSender);
 };
 
-#endif // __MAINMENU_SCENE_H__
+#endif // __MAINMENU_H__
