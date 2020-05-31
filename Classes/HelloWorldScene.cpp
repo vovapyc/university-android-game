@@ -39,11 +39,21 @@ bool HelloWorld::init() {
     Size visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    float nextHeartYPosition = 50;
+    for (unsigned short i = 0; i < heartPoint; i++) {
+        hearts[i]->setPosition(
+                Vec2(visibleSize.width - nextHeartYPosition, visibleSize.height - 2));
+        nextHeartYPosition -= 15;
+        hearts[i]->setScale(2);
+        addChild(hearts[i]);
+    }
+
 
     auto wall = Node::create();
     auto wallBody = PhysicsBody::createEdgeBox(visibleSize, PhysicsMaterial(0.1f, 1.0f, 0.0f));
     wall->setPhysicsBody(wallBody);
     wall->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y));
+    wallBody->setContactTestBitmask(false);
     addChild(wall);
 
     auto sprite3 = Sprite::create("ball.png");
@@ -55,6 +65,7 @@ bool HelloWorld::init() {
     spriteBody3->setGravityEnable(false);
     spriteBody3->setVelocity(Vect(100, 50));
     spriteBody3->setVelocityLimit(0);
+    spriteBody3->setContactTestBitmask(true);
     this->addChild(sprite3);
 
 
@@ -67,6 +78,7 @@ bool HelloWorld::init() {
     spriteBody->setGravityEnable(false);
     spriteBody->setVelocity(Vect(100, 50));
     spriteBody->setVelocityLimit(200);
+    spriteBody->setContactTestBitmask(true);
     this->addChild(sprite2);
 
 
@@ -78,6 +90,7 @@ bool HelloWorld::init() {
     sprite->setPhysicsBody(spriteBody2);
     spriteBody2->setGravityEnable(false);
     spriteBody2->setVelocityLimit(0);
+    spriteBody2->setContactTestBitmask(true);
 
     size = Director::getInstance()->getWinSize();
     auto listener = EventListenerTouchOneByOne::create();
@@ -120,6 +133,9 @@ void HelloWorld::onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event) {
 }
 
 bool HelloWorld::onCollision(PhysicsContact &contact) {
-
+    hearts[heartPoint - 1]->setColor(Color3B(100, 100, 200));
+    if (--heartPoint == 0) {
+        HelloWorld::GoToGameOverScene();
+    }
     return false;
 }

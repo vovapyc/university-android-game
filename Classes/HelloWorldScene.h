@@ -13,6 +13,12 @@ public:
 
     void GoToPauseScene(Ref *pSender);
 
+    cocos2d::Sprite *hearts[3] = {
+            cocos2d::Sprite::create("heart.png"),
+            cocos2d::Sprite::create("heart.png"),
+            cocos2d::Sprite::create("heart.png")
+    };
+
 
     virtual bool init();
 
@@ -27,6 +33,8 @@ public:
     cocos2d::Size size;
     bool isTouching;
     float touchPosition_x, touchPosition_y;
+
+    unsigned short heartPoint = 3;
 
     CREATE_FUNC(HelloWorld);
 
