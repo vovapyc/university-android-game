@@ -7,16 +7,21 @@
 
 class HelloWorld : public cocos2d::Layer {
 public:
-    static cocos2d::Scene* createScene();
-    void GoToGameOverScene(Ref *pSender);
+    static cocos2d::Scene *createScene();
+
+    void GoToGameOverScene();
+
     void GoToPauseScene(Ref *pSender);
 
 
-
     virtual bool init();
-    bool onCollision(cocos2d::PhysicsContact& contact);
-    bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event * event);
-    void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event * event);
+
+    bool onCollision(cocos2d::PhysicsContact &contact);
+
+    bool onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event);
+
+    void onTouchMoved(cocos2d::Touch *touch, cocos2d::Event *event);
+
     cocos2d::Sprite *sprite;
     cocos2d::PhysicsBody *spriteBody2;
     cocos2d::Size size;
@@ -24,7 +29,6 @@ public:
     float touchPosition_x, touchPosition_y;
 
     CREATE_FUNC(HelloWorld);
-
 
 
 };

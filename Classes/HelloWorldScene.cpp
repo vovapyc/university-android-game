@@ -20,13 +20,12 @@ Scene *HelloWorld::createScene() {
     return scene;
 }
 
-void HelloWorld::GoToPauseScene(cocos2d::Ref *pSender)
-{
+void HelloWorld::GoToPauseScene(cocos2d::Ref *pSender) {
 //    auto scene = PauseScene::createScene();
 //    Director::getInstance()->pushScene(scene);
 }
-void HelloWorld::GoToGameOverScene(cocos2d::Ref *pSender)
-{
+
+void HelloWorld::GoToGameOverScene() {
     auto scene = GameOver::createScene();
     Director::getInstance()->replaceScene(scene);
 }
@@ -106,7 +105,9 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch *touch, cocos2d::Event *event) {
     isTouching = true;
     touchPosition_x = touch->getLocation().x;
     touchPosition_y = touch->getLocation().y;
-    spriteBody2->setPositionOffset(Vec2(touchPosition_x, touchPosition_y));
+    sprite->setPosition(Vec2(touchPosition_x, touchPosition_y));
+    spriteBody2->setPositionOffset(
+            Vec2(touchPosition_x - touchPosition_x, touchPosition_y - touchPosition_y));
     return true;
 }
 
